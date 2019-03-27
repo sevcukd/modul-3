@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-1">
+
+  </div>
+  <div class="col-11">
+    <% @hotels.each do |hotel| %>
+      <h1><%= hotel.title %></h1>
+      <h3><%= hotel.description %> </h3>
+      <% hotel.photos.each do |photo| %>
+        <%= image_tag(photo.url, size:"300x300") %> <br>
+      <% end %><br>
+
+<%= link_to "Contacts", pages_contacts_path(hotel.id), :class => 'btn btn-primary active' %>
+<%= link_to "Gallery", pages_gallery_path(hotel.id), :class => 'btn btn-primary active' %><br> <hr>
+
+    <% end %>
+  </div>
+</div>

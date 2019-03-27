@@ -1,0 +1,991 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (123.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (72.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHotels (20190327100811)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "hotels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "photos" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190327100811"]]
+  [1m[35m (77.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRooms (20190327100859)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "photos" varchar, "hotel_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190327100859"]]
+  [1m[35m (82.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateContacts (20190327100937)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar, "phone" varchar, "email" varchar, "hotel_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190327100937"]]
+  [1m[35m (83.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveAdminComments (20190327101355)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "namespace" varchar, "body" text, "resource_type" varchar, "resource_id" integer, "author_type" varchar, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_active_admin_comments_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" ("author_type", "author_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_active_admin_comments_on_namespace" ON "active_admin_comments" ("namespace")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190327101355"]]
+  [1m[35m (80.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-03-27 10:38:40.404719"], ["updated_at", "2019-03-27 10:38:40.404719"]]
+  [1m[35m (52.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_namespace' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_author_type_and_author_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_active_admin_comments_on_resource_type_and_resource_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:00 +0200
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 8344ms (Views: 8333.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:15 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 148ms (Views: 145.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:17 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 137ms (Views: 134.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:20 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.5ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 159ms (Views: 156.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:20 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 155ms (Views: 152.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:39:21 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 165ms (Views: 163.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2019-03-27 12:39:27 +0200
+Processing by Admin::DashboardController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/page/index.html.arb
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/page/index.html.arb (209.8ms)
+Completed 200 OK in 214ms (Views: 211.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:40:28 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 153ms (Views: 150.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2019-03-27 12:40:35 +0200
+Processing by Admin::CommentsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ?[0m  [["namespace", "admin"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?) subquery_for_count[0m  [["namespace", "admin"], ["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments" ORDER BY resource_type asc[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments" ORDER BY author_type asc[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (133.5ms)
+Completed 200 OK in 146ms (Views: 136.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/admin/contacts" for 127.0.0.1 at 2019-03-27 12:40:37 +0200
+Processing by Admin::ContactsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.1ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (123.8ms)
+Completed 200 OK in 131ms (Views: 126.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:40:40 +0200
+Processing by Admin::HotelsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts"[0m
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (119.9ms)
+Completed 200 OK in 127ms (Views: 122.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/rooms" for 127.0.0.1 at 2019-03-27 12:40:42 +0200
+Processing by Admin::RoomsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (126.6ms)
+Completed 200 OK in 132ms (Views: 129.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:40:45 +0200
+Processing by Admin::HotelsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts"[0m
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (124.7ms)
+Completed 200 OK in 130ms (Views: 128.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/rooms" for 127.0.0.1 at 2019-03-27 12:40:48 +0200
+Processing by Admin::RoomsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (121.9ms)
+Completed 200 OK in 127ms (Views: 125.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/rooms/new" for 127.0.0.1 at 2019-03-27 12:40:50 +0200
+Processing by Admin::RoomsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (176.1ms)
+Completed 200 OK in 224ms (Views: 213.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:40:55 +0200
+Processing by Admin::HotelsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts"[0m
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (174.0ms)
+Completed 200 OK in 187ms (Views: 176.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admin/hotels/new" for 127.0.0.1 at 2019-03-27 12:40:57 +0200
+Processing by Admin::HotelsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (140.0ms)
+Completed 200 OK in 158ms (Views: 143.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:41:33 +0200
+Processing by Admin::HotelsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wMzTxI7YyIATtSKbQkS8VbE/risDYrwJd652ll3DeNS0NcXj2xh0iJTYqCE3AO4aDoP5gyH4MS6GKMidgo/C0Q==", "hotel"=>{"title"=>"Hotel1", "photos"=>[#<ActionDispatch::Http::UploadedFile:0x007f520db20118 @tempfile=#<Tempfile:/tmp/RackMultipart20190327-16272-148yhd2.png>, @original_filename="Зняток екрану з 2018-09-14 10-08-11.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"hotel[photos][]\"; filename=\"\xD0\x97\xD0\xBD\xD1\x8F\xD1\x82\xD0\xBE\xD0\xBA \xD0\xB5\xD0\xBA\xD1\x80\xD0\xB0\xD0\xBD\xD1\x83 \xD0\xB7 2018-09-14 10-08-11.png\"\r\nContent-Type: image/png\r\n">, #<ActionDispatch::Http::UploadedFile:0x007f520db200c8 @tempfile=#<Tempfile:/tmp/RackMultipart20190327-16272-ie7p1.png>, @original_filename="Зняток екрану з 2018-12-19 23-11-28.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"hotel[photos][]\"; filename=\"\xD0\x97\xD0\xBD\xD1\x8F\xD1\x82\xD0\xBE\xD0\xBA \xD0\xB5\xD0\xBA\xD1\x80\xD0\xB0\xD0\xBD\xD1\x83 \xD0\xB7 2018-12-19 23-11-28.png\"\r\nContent-Type: image/png\r\n">], "description"=>"Niceeeeee"}, "commit"=>"Create Hotel"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "hotels" ("title", "description", "photos", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Hotel1"], ["description", "Niceeeeee"], ["photos", "[\"Зняток_екрану_з_2018-09-14_10-08-11.png\",\"Зняток_екрану_з_2018-12-19_23-11-28.png\"]"], ["created_at", "2019-03-27 10:41:33.137877"], ["updated_at", "2019-03-27 10:41:33.137877"]]
+  [1m[35m (100.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admin/hotels/1
+Completed 302 Found in 130ms (ActiveRecord: 101.1ms)
+
+
+Started GET "/admin/hotels/1" for 127.0.0.1 at 2019-03-27 12:41:33 +0200
+Processing by Admin::HotelsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb (209.3ms)
+Completed 200 OK in 238ms (Views: 222.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/rooms" for 127.0.0.1 at 2019-03-27 12:41:36 +0200
+Processing by Admin::RoomsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (1.1ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (130.9ms)
+Completed 200 OK in 136ms (Views: 132.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/rooms/new" for 127.0.0.1 at 2019-03-27 12:41:38 +0200
+Processing by Admin::RoomsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (112.7ms)
+Completed 200 OK in 116ms (Views: 115.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/rooms" for 127.0.0.1 at 2019-03-27 12:42:09 +0200
+Processing by Admin::RoomsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fGcWo4Z1/wzcLyAPyN3lDn5Szy8R/flV+KqaWUU3kvcIngCE07VDBFtCqrW9mbdBwe6YhzNndHIJLCRSmnso8g==", "room"=>{"hotel_id"=>"1", "title"=>"1 room", "photos"=>[#<ActionDispatch::Http::UploadedFile:0x007f520d2e8a40 @tempfile=#<Tempfile:/tmp/RackMultipart20190327-16272-59ohxs.png>, @original_filename="Зняток екрану з 2018-11-25 16-47-14.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"room[photos][]\"; filename=\"\xD0\x97\xD0\xBD\xD1\x8F\xD1\x82\xD0\xBE\xD0\xBA \xD0\xB5\xD0\xBA\xD1\x80\xD0\xB0\xD0\xBD\xD1\x83 \xD0\xB7 2018-11-25 16-47-14.png\"\r\nContent-Type: image/png\r\n">], "description"=>"aasss"}, "commit"=>"Create Room"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "rooms" ("title", "description", "photos", "hotel_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "1 room"], ["description", "aasss"], ["photos", "[\"Зняток_екрану_з_2018-11-25_16-47-14.png\"]"], ["hotel_id", 1], ["created_at", "2019-03-27 10:42:09.551714"], ["updated_at", "2019-03-27 10:42:09.551714"]]
+  [1m[35m (101.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admin/rooms/1
+Completed 302 Found in 200ms (ActiveRecord: 101.6ms)
+
+
+Started GET "/admin/rooms/1" for 127.0.0.1 at 2019-03-27 12:42:09 +0200
+Processing by Admin::RoomsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Room"], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Room"], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb (128.9ms)
+Completed 200 OK in 133ms (Views: 130.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:42:13 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 145ms (Views: 143.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:42:19 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 155ms (Views: 152.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:42:20 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 147ms (Views: 144.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:42:23 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.5ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 163ms (Views: 160.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/comments" for 127.0.0.1 at 2019-03-27 12:42:50 +0200
+Processing by Admin::CommentsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ?[0m  [["namespace", "admin"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?) subquery_for_count[0m  [["namespace", "admin"], ["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."resource_type" FROM "active_admin_comments" ORDER BY resource_type asc[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT DISTINCT "active_admin_comments"."author_type" FROM "active_admin_comments" ORDER BY author_type asc[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (130.1ms)
+Completed 200 OK in 137ms (Views: 133.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/contacts" for 127.0.0.1 at 2019-03-27 12:42:52 +0200
+Processing by Admin::ContactsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (188.4ms)
+Completed 200 OK in 193ms (Views: 190.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/contacts/new" for 127.0.0.1 at 2019-03-27 12:42:55 +0200
+Processing by Admin::ContactsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (147.5ms)
+Completed 200 OK in 182ms (Views: 150.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/admin/contacts" for 127.0.0.1 at 2019-03-27 12:43:23 +0200
+Processing by Admin::ContactsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jjVYJ4wCN9obc8qBC7b/SNc7S0UTsT3rBvwPP30KukH6zE4A2cKL0pweQDt+8q0HaIcc7TErsMz3erE0okYARA==", "contact"=>{"hotel_id"=>"1", "address"=>"Gdeto tam", "phone"=>"8 800 555 35 35", "email"=>"asdfa@gmail.com"}, "commit"=>"Create Contact"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "contacts" ("address", "phone", "email", "hotel_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Gdeto tam"], ["phone", "8 800 555 35 35"], ["email", "asdfa@gmail.com"], ["hotel_id", 1], ["created_at", "2019-03-27 10:43:24.129254"], ["updated_at", "2019-03-27 10:43:24.129254"]]
+  [1m[35m (104.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admin/contacts/1
+Completed 302 Found in 444ms (ActiveRecord: 105.6ms)
+
+
+Started GET "/admin/contacts/1" for 127.0.0.1 at 2019-03-27 12:43:24 +0200
+Processing by Admin::ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb
+  [1m[36mHotel Load (0.1ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Contact"], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Contact"], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb (130.4ms)
+Completed 200 OK in 135ms (Views: 132.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/hotels/1" for 127.0.0.1 at 2019-03-27 12:43:27 +0200
+Processing by Admin::HotelsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 1 AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb (135.5ms)
+Completed 200 OK in 140ms (Views: 137.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:43:45 +0200
+Processing by Admin::HotelsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "hotels"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "hotels" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" ORDER BY "hotels"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT "contacts".* FROM "contacts"[0m
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (557.9ms)
+Completed 200 OK in 562ms (Views: 559.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/admin/hotels/new" for 127.0.0.1 at 2019-03-27 12:43:48 +0200
+Processing by Admin::HotelsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (118.4ms)
+Completed 200 OK in 124ms (Views: 122.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/admin/hotels" for 127.0.0.1 at 2019-03-27 12:44:07 +0200
+Processing by Admin::HotelsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oc2qaO5RIvKomPa9f+GB/fxf9iLQFPWnL68wwbvGyr7VNLxPu5Ge+i/1fAcKpdOyQ+OhivKOeIDeKY7KZIpwuw==", "hotel"=>{"title"=>"Hotel 2", "photos"=>[#<ActionDispatch::Http::UploadedFile:0x007f520d8cae90 @tempfile=#<Tempfile:/tmp/RackMultipart20190327-16272-cb9x4v.png>, @original_filename="Зняток екрану з 2018-11-25 16-47-14.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"hotel[photos][]\"; filename=\"\xD0\x97\xD0\xBD\xD1\x8F\xD1\x82\xD0\xBE\xD0\xBA \xD0\xB5\xD0\xBA\xD1\x80\xD0\xB0\xD0\xBD\xD1\x83 \xD0\xB7 2018-11-25 16-47-14.png\"\r\nContent-Type: image/png\r\n">], "description"=>"daaaaa"}, "commit"=>"Create Hotel"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "hotels" ("title", "description", "photos", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Hotel 2"], ["description", "daaaaa"], ["photos", "[\"Зняток_екрану_з_2018-11-25_16-47-14.png\"]"], ["created_at", "2019-03-27 10:44:07.249106"], ["updated_at", "2019-03-27 10:44:07.249106"]]
+  [1m[35m (152.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admin/hotels/2
+Completed 302 Found in 171ms (ActiveRecord: 153.2ms)
+
+
+Started GET "/admin/hotels/2" for 127.0.0.1 at 2019-03-27 12:44:07 +0200
+Processing by Admin::HotelsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mHotel Load (0.1ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 2 AND "active_admin_comments"."namespace" = ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"]]
+  [1m[36mActiveAdmin::Comment Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = ? AND "active_admin_comments"."resource_id" = 2 AND "active_admin_comments"."namespace" = ? LIMIT ? OFFSET ?[0m  [["resource_type", "Hotel"], ["namespace", "admin"], ["LIMIT", 1], ["OFFSET", 0]]
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/show.html.arb (137.0ms)
+Completed 200 OK in 141ms (Views: 139.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:44:09 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.6ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 156ms (Views: 153.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:45:19 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.4ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.8ms)
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendered layouts/_header.html.erb (535.3ms)
+Completed 500 Internal Server Error in 692ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_post_path' for #<#<Class:0x000000049858d8>:0x007f520f8fc600>
+Did you mean?  new_polymorphic_path):
+    4:       <li><%= link_to "Home", root_path, :class => 'navbar-brand'  %></li>
+    5:     </div>
+    6:     <ul class="navbar-nav">
+    7:       <li><%= link_to new_post_path, :class => 'nav-link' do %> Add new post
+    8:         <i class="fas fa-plus-square"></i>
+    9:       <% end %></li>
+   10: 
+  
+app/views/layouts/_header.html.erb:7:in `_app_views_layouts__header_html_erb__1485186819479098661_69995214108020'
+app/views/layouts/application.html.erb:12:in `_app_views_layouts_application_html_erb___1673594059872857621_69995212533540'
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:45:33 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 171ms (Views: 169.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:45:40 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 153ms (Views: 150.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:47:05 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 157ms (Views: 155.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:49:09 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 150ms (Views: 148.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:50:28 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 150ms (Views: 148.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:50:44 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 152ms (Views: 150.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/r" for 127.0.0.1 at 2019-03-27 12:51:43 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/r"):
+  
+actionpack (5.1.6.2) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6.2) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/admin/contacts" for 127.0.0.1 at 2019-03-27 12:52:11 +0200
+Processing by Admin::ContactsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "contacts"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.8ms)[0m  [1m[34mSELECT  "contacts".* FROM "contacts" ORDER BY "contacts"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (219.8ms)
+Completed 200 OK in 224ms (Views: 220.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/admin/rooms" for 127.0.0.1 at 2019-03-27 12:52:12 +0200
+Processing by Admin::RoomsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rooms"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "rooms" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" ORDER BY "rooms"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (180.5ms)
+Completed 200 OK in 186ms (Views: 182.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:52:50 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 154ms (Views: 152.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/contacts" for 127.0.0.1 at 2019-03-27 12:52:54 +0200
+Processing by PagesController#contacts as HTML
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 148ms (Views: 146.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:54:08 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 147ms (Views: 144.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:54:11 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 163ms (Views: 157.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:54:25 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 158ms (Views: 153.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:54:54 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCACHE Room Load (0.0ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" LIMIT ?[0m  [["LIMIT", 11]]
+  Rendered pages/index.html.erb within layouts/application (456.4ms)
+Completed 500 Internal Server Error in 461ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `hotel' for #<#<Class:0x000000049858d8>:0x007f520fa0b5c8>
+Did you mean?  @hotels):
+    10:         <%= image_tag(photo.url, size:"300x300") %> <br>
+    11:       <% end %>
+    12:     <% end %>
+    13:     <%= link_to "Contacts", pages_contacts_path(hotel.id) %><hr>
+    14:   </div>
+    15: </div>
+  
+app/views/pages/index.html.erb:13:in `_app_views_pages_index_html_erb__1270911701255226194_69995212784540'
+Started GET "/" for 127.0.0.1 at 2019-03-27 12:55:17 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 235ms (Views: 232.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:55:21 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 150ms (Views: 144.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/admin/contacts" for 127.0.0.1 at 2019-03-27 12:55:28 +0200
+Processing by Admin::ContactsController#index as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "contacts"[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT  1 AS one FROM "contacts" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mContact Load (0.2ms)[0m  [1m[34mSELECT  "contacts".* FROM "contacts" ORDER BY "contacts"."id" desc LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" WHERE "hotels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/index.html.arb (146.3ms)
+Completed 200 OK in 151ms (Views: 148.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/admin/contacts/new" for 127.0.0.1 at 2019-03-27 12:56:07 +0200
+Processing by Admin::ContactsController#new as HTML
+  Rendering /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered /home/dima/.rvm/gems/ruby-2.4.0@rails5.1.0/gems/activeadmin-1.4.3/app/views/active_admin/resource/new.html.arb (131.3ms)
+Completed 200 OK in 135ms (Views: 134.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:58:00 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @contacts.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb___2111575000078385351_69995214243120'
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:59:12 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (6.2ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @contacts.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb___2111575000078385351_69995201651280'
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:59:37 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `contacts' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @hotels.contacts.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb___2111575000078385351_69995188396040'
+Started GET "/pages/contacts.1" for 127.0.0.1 at 2019-03-27 12:59:46 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (8.9ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `contact' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @hotels.contact.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb___2111575000078385351_69995197957860'
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:00:38 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 152ms (Views: 150.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:05:54 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 153ms (Views: 151.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:06:14 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 164ms (Views: 161.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:06:56 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 155ms (Views: 152.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:08:21 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 162ms (Views: 159.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages_contacts_path" for 127.0.0.1 at 2019-03-27 13:08:25 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/pages_contacts_path"):
+  
+actionpack (5.1.6.2) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6.2) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6.2) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:08:28 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 159ms (Views: 157.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:11:04 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.5ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (83.1ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 1252ms (Views: 1238.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:12:16 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.5ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 152ms (Views: 149.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:12:34 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 148ms (Views: 146.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:12:47 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 148ms (Views: 146.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:13:06 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 153ms (Views: 151.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:13:32 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 150ms (Views: 148.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:13:33 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.2ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 173ms (Views: 171.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/contacts.2" for 127.0.0.1 at 2019-03-27 13:13:43 +0200
+Processing by PagesController#contacts as 
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (41.4ms)
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `contact' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @hotels.contact.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb__2485225670886752976_70350764787840'
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:19:44 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.7ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 211ms (Views: 208.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-03-27 13:20:46 +0200
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mHotel Load (0.4ms)[0m  [1m[34mSELECT "hotels".* FROM "hotels"[0m
+  Rendered pages/index.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 166ms (Views: 164.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/gallery" for 127.0.0.1 at 2019-03-27 13:20:50 +0200
+Processing by PagesController#gallery as HTML
+  Rendering pages/gallery.html.erb within layouts/application
+  Rendered pages/gallery.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 159ms (Views: 156.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/contacts" for 127.0.0.1 at 2019-03-27 13:20:53 +0200
+Processing by PagesController#contacts as HTML
+  Rendering pages/contacts.html.erb within layouts/application
+  Rendered pages/contacts.html.erb within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `contact' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @hotels.contact.each do |c| %>
+    3:       <h1><%= c.phone %></h1>
+    4:       <h3><%= c.address %> </h3>
+    5:     <% end %>
+  
+app/views/pages/contacts.html.erb:2:in `_app_views_pages_contacts_html_erb__2485225670886752976_70350780988360'
+Started GET "/pages/gallery" for 127.0.0.1 at 2019-03-27 13:20:55 +0200
+Processing by PagesController#gallery as HTML
+  Rendering pages/gallery.html.erb within layouts/application
+  Rendered pages/gallery.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 138ms (Views: 136.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/gallery" for 127.0.0.1 at 2019-03-27 13:22:14 +0200
+Processing by PagesController#gallery as HTML
+  Rendering pages/gallery.html.erb within layouts/application
+  Rendered pages/gallery.html.erb within layouts/application (4.4ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1:   <div class="col-11">
+    2:     <% @hotels.each do |hotel| %>
+    3:       <h1><%= hotel.title %></h1>
+    4:       <% hotel.photos.each do |photo| %>
+    5:         <%= image_tag(photo.url, size:"300x300") %> <br>
+  
+app/views/pages/gallery.html.erb:2:in `_app_views_pages_gallery_html_erb__3886687551855530042_70350783476360'

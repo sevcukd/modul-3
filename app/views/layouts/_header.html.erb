@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <li><%= link_to "Home", root_path, :class => 'navbar-brand'  %></li>
+    </div>
+    <ul class="navbar-nav">
+      <li><%= link_to pages_gallery_path, :class => 'nav-link' do %> Gallery
+        <i class="fas fa-plus-square"></i>
+      <% end %></li>
+        <li><%= link_to pages_contacts_path, :class => 'nav-link' do %> Contact
+        <i class="fas fa-plus-square"></i>
+      <% end %></li>
+    </ul>
+
+
+
+</nav>

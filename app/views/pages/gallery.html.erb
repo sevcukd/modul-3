@@ -1,0 +1,7 @@
+  <div class="col-11">
+    <% @hotels.each do |hotel| %>
+      <h1><%= hotel.title %></h1>
+      <% hotel.photos.each do |photo| %>
+        <%= image_tag(photo.url, size:"300x300") %> <br>
+      <% end %><br>
+    <% end %>
